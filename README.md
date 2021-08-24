@@ -24,6 +24,6 @@ net-stream-parser port [log_file_name]
 ```
 - Start **netcat** to transfer file:
 ```
-nc64 port localhost < example_data.txt
+nc64 localhost port < example_data.txt
 ```
 - Analysis results will be printed in console or **log_file_name** if file name was given as server argument.
