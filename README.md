@@ -9,8 +9,9 @@ Tcp server app accepting character stream line by line and performing analysis o
 
 ## Building for Windows
 
+- Install MS Visual Studio 2019.
 - In *Configuration Properties > C/C++ > General > Additional Include Directories*, change the path to your Boost root directory, for example
-`C:\Program Files\boost\boost_1_77_0`
+`C:\Program Files\boost\boost_1_77_0`.
 - Open solution `net-stream-parser.sln` and build.
 
 ## Building for Linux
