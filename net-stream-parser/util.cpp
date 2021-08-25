@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstring>
+#include <cmath>
 
 #include "util.h"
 

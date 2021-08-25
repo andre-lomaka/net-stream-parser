@@ -25,6 +25,7 @@ public:
 private:
     map<uint32_t, DeviceData> tags; // maps device id to device data
     char *log_file_name;
+    int line_count = 0;
 };
 
 #endif

@@ -1,10 +1,12 @@
 #include <string>
 #include <boost/algorithm/string/trim.hpp>
-
+#include <iostream> //delme
+using std::cout;
 #include "Session.h"
 
 void Session::Start()
 {
+   eof_flag = false;
    Read();
 }
 
@@ -19,8 +21,14 @@ void Session::Read()
                           std::istream is(&buffer);
                           std::string line;
                           getline(is, line);
-                          boost::algorithm::trim_right(line);
-                          if (!lcons->ProcessLine(line)) return;
+                          if (eof_flag)
+                             eof_flag = false;
+                          else {
+                             boost::algorithm::trim_right(line);
+                             if (!lcons->ProcessLine(line)) return;
+                          }
+                          if (is.eof())
+                             eof_flag = true;
                           Read();
                        }
                     });

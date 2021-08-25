@@ -29,6 +29,7 @@ private:
    streambuf buffer;
    boost::regex expr{"(\r|\n|\r\n)"};
    LineConsumer *lcons;
+   bool eof_flag = false;
 };
 
 #endif

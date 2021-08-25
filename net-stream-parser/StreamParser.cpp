@@ -1,6 +1,7 @@
 #include <iostream>
 #include <boost/tokenizer.hpp>
 #include <fstream>
+#include <cstring>
 
 #include "util.h"
 #include "StreamParser.h"
@@ -13,6 +14,7 @@ enum PacketType { unknown, rr_l, end_of_file, coord };
 bool StreamParser::ProcessLine(string& line)
 {
    if (line.compare(0, 3, "$PE")) return true;
+   line_count++;
    int tok_count = 0;
    uint32_t hex_number = 0;
    int sequence_number = 0;
@@ -85,6 +87,7 @@ bool StreamParser::ProcessLine(string& line)
    } else if (p_type == end_of_file)
    {
       PrintDataAnalysis();
+      Reset();
       return false;
    }
    return true;
@@ -107,6 +110,7 @@ void StreamParser::PrintDataAnalysis()
    {
       os = &cout;
    }
+   (*os) << "Processed " << line_count << " lines" << endl << endl;
    (*os) << "Number of devices: " << GetNumberOfTags() << endl << endl;
    map<uint32_t, DeviceData>::iterator itr;
    for (itr = tags.begin(); itr != tags.end(); ++itr)
@@ -122,5 +126,6 @@ void StreamParser::PrintDataAnalysis()
 
 void StreamParser::Reset()
 {
+   line_count = 0;
    tags.clear();
 }
