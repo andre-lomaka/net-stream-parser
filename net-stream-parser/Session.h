@@ -24,12 +24,9 @@ private:
    void Read();
 
    tcp::socket sock;
-   enum { max_length = 1024 };
-   char data[max_length] = {};
    streambuf buffer;
    boost::regex expr{"(\r|\n|\r\n)"};
    LineConsumer *lcons;
-   bool eof_flag = false;
 };
 
 #endif
