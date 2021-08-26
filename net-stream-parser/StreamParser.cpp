@@ -44,9 +44,8 @@ bool StreamParser::ProcessLine(string& line)
          {
             p_type = unknown;
          }
-      }
-      if ((p_type == unknown || p_type == end_of_file) && tok_count > 1) break;
-      if (tok_count == 3)
+         if (p_type == unknown || p_type == end_of_file) break;
+      } else if (tok_count == 3)
       {
          sequence_number = atoi(tok.c_str());
       } else if (tok_count == 4)
@@ -65,7 +64,7 @@ bool StreamParser::ProcessLine(string& line)
             {
                current_tag_ptr->second.AddTime(sequence_number, atol(tok_prev.c_str()));
             }
-         } else if (p_type == coord)
+         } else if (p_type == coord && tok_count < 9)
          {
             if (tok_count == 5) x = atof(tok.c_str());
             else if (tok_count == 6) y = atof(tok.c_str());
